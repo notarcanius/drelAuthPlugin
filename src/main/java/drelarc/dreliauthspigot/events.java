@@ -50,6 +50,10 @@ public class events implements Listener {
     }
 @EventHandler
     public void serverOn(PluginEnableEvent e) {
+        if ((String) plugin.getConfig().getString("MYSQLIP").equals("")) {
+            Bukkit.getLogger().severe("MYSQL DATABASE IS NOT SET, ALL PLAYER AUTH DATA CAN'T BE SAVED!!!");
+            return true;
+        }
         Bukkit.getLogger().info("MYSQL Auto-Delete is active! EVERY 30 MINUTES!");
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
